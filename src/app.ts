@@ -971,3 +971,251 @@
 // const num2: bigint = 2n;
 
 // console.log(num1 + num2)
+
+// interface IUserData {
+// 	isBirthdayData: boolean;
+// 	ageData: number;
+// 	userNameData: string;
+// 	messages: { error: string };
+// }
+
+// const userData: IUserData = {
+// 	isBirthdayData: true,
+// 	ageData: 40,
+// 	userNameData: "Alex",
+// 	messages: {
+// 		error: "Error",
+// 	},
+// };
+
+// const createError = (msg: string) => {
+// 	throw new Error(msg);
+// };
+
+// const logBirthdayMsg = ({
+// 	isBirthdayData,
+// 	userNameData,
+// 	ageData,
+// 	messages: { error },
+// }: IUserData): string => {
+// 	if (isBirthdayData) {
+// 		return `Congrats ${userNameData}, you're ${ageData}`;
+// 	} else {
+// 		return createError(error);
+// 	}
+// };
+
+// console.log(logBirthdayMsg(userData));
+
+// const deps: string[] = ["dev", "design", "marketing"];
+
+// const dep = deps[0];
+
+// deps.push("wcds");
+// deps[3] = "analytics";
+// // console.log(deps.join(", ") + "...");
+
+// const report = deps.filter((d: string) => d !== "dev").map((d: string) => `${d} - done`);
+// console.log(report);
+
+// const [first, second, third] = report;
+
+// console.log(first);
+// console.log(second);
+// console.log(third);
+
+//Code typisation practice ------------------------------------------------------------
+
+// interface IElData {
+// 	readings: number;
+// 	units?: string;
+// 	mode: string;
+// }
+
+// const electricityUserData: IElData = {
+// 	readings: 95,
+// 	units: "kWt",
+// 	mode: "double",
+// };
+
+// interface IWaterData {
+// 	readings: number;
+// 	units?: string;
+// }
+
+// const waterUserData: IWaterData = {
+// 	readings: 3,
+// 	units: "m3",
+// };
+
+// const elRate: number = 0.45;
+// const wRate: number = 2;
+
+// const monthPayments: number[] = [0, 0]; // [electricity, water]
+
+// const calculatePayments = (
+// 	elData: IElData,
+// 	wData: IWaterData,
+// 	elRate: number,
+// 	wRate: number,
+// ): void => {
+// 	if (elData.mode === "double" && elData.readings < 50) {
+// 		monthPayments[0] = elData.readings * elRate * 0.7;
+// 	} else {
+// 		monthPayments[0] = elData.readings * elRate;
+// 	}
+
+// 	monthPayments[1] = wData.readings * wRate;
+// };
+
+// calculatePayments(electricityUserData, waterUserData, elRate, wRate);
+
+// const sendInvoice = (
+// 	[el, water]: number[],
+// 	electricityUserData: IElData,
+// 	waterUserData: IWaterData,
+// ) => {
+// 	const text = `    Hello!
+//     This month you used ${electricityUserData.readings} ${electricityUserData.units} of electricity
+//     It will cost: ${el}€
+
+//     This month you used ${waterUserData.readings} ${waterUserData.units} of water
+//     It will cost: ${water}€`;
+
+// 	return text;
+// };
+
+// console.log(sendInvoice(monthPayments, electricityUserData, waterUserData));
+
+// Tuples --------------------------------------------------------------------------
+
+// const userData = {
+// 	isBirthdayData: true,
+// 	ageData: 40,
+// 	userNameData: "Alex",
+// 	messages: {
+// 		error: "Error",
+// 	},
+// };
+
+// const userDataTuple: [boolean, number, ...string[]] = [true, 40, "Alex"];
+
+// const res = userDataTuple.map((t) => `${t} - data`);
+
+// const [birthday, age, userName] = userDataTuple;
+
+// Union ---------------------------------------------------------------------------
+
+let message: string | number = 3;
+const messages: string[] | number[] = ["33", "1", "15"];
+const arrNumber = messages.map((value) => Number.parseInt(value));
+
+console.dir(arrNumber);
+
+function printMassage(msg: string | number | boolean): void {
+	if (typeof msg === "string" || typeof msg === "number") {
+		console.log(msg.toString());
+	} else {
+		console.log(msg.valueOf());
+	}
+}
+// printMassage("Hello");
+// printMassage(9);
+
+function showMassage(msg: string[] | number | boolean): void {
+	if (Array.isArray(msg)) {
+		console.log(msg.join(" "));
+	} else if (typeof msg === "number") {
+		console.log(msg.toFixed(2));
+	} else {
+		console.log(msg);
+	}
+}
+
+// showMassage(["Hello", "my", "friends:", "Alex", "Eric", "Nastya!"]);
+// showMassage(555.12445);
+// showMassage(true);
+
+// Narrowing --------------------------------------------------------------------
+
+const printReadings = (a: number | string, b: number | boolean): void => {
+	if (typeof a === typeof b) {
+		console.log(a, b);
+	} else {
+		console.log("Another type");
+	}
+};
+
+// printReadings(4, 6);
+// printReadings("sdsdsd", 7);
+
+const printReadings2 = (a: number[] | string): void => {
+	console.log(a.slice(0, 2));
+};
+
+// printReadings2([4, 6, 8, 2]);
+
+const checkReadings = (readings: { system: number } | { user: number }): void => {
+	if ("system" in readings) {
+		console.log(readings.system);
+	} else {
+		console.log(readings.user);
+	}
+};
+
+checkReadings({ system: 10 });
+checkReadings({ user: 4 });
+
+const logValue = (x: string | Date) => {
+	if (x instanceof Date) {
+		console.log(x.getDate());
+	} else {
+		console.log(x.length);
+	}
+};
+
+// logValue(new Date());
+// logValue("Alex");
+
+// Literal types
+
+let msg: "Hello" = "Hello";
+
+msg = "Hello";
+
+const port3000: number = 3000;
+const port3001: number = 3001;
+
+function startServer(protocol: "udp" | "https", port: 3000 | 3001): string | void {
+	if (protocol === "udp") {
+		console.log(protocol);
+		return "Server started at port: " + port;
+	}
+	return "Server started";
+}
+
+function stopServer(protocol: "udp" | "https", port: 3000 | 3001): string | void {
+	if (port === port3000 || port === port3001) {
+		console.log(protocol);
+		return `Server stoped at protocol: ${protocol} and port: ${port}`;
+	}
+	return console.error("Invalid port");
+}
+
+console.log(startServer("udp", 3000));
+console.log(stopServer("https", 3001));
+
+type AnimationTF = "ease" | "ease-in" | "ease-out";
+type AnimationID = string | number;
+
+function createAnimation(
+	num1: AnimationID,
+	animName: string,
+	timingFunct: AnimationTF = "ease",
+	duration: number,
+	iteration: number | "infinite",
+): void {
+	console.log(`${num1} ${animName} ${timingFunct} ${duration} ${iteration}`);
+}
+
+createAnimation("num1", "tasks", "ease", 134, "infinite");
