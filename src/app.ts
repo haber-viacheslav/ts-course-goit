@@ -1183,16 +1183,27 @@ let msg: "Hello" = "Hello";
 
 msg = "Hello";
 
+const serverConfig: {
+	protocol: "udp" | "https";
+	port: 3000 | 3001;
+} = {
+	protocol: "https",
+	port: 3001,
+};
+
 const port3000: number = 3000;
 const port3001: number = 3001;
 
-function startServer(protocol: "udp" | "https", port: 3000 | 3001): string | void {
+const startServer: (protocol: "udp" | "https", port: 3000 | 3001) => string | void = (
+	protocol: "udp" | "https",
+	port: 3000 | 3001,
+): string | void => {
 	if (protocol === "udp") {
 		console.log(protocol);
 		return "Server started at port: " + port;
 	}
 	return "Server started";
-}
+};
 
 function stopServer(protocol: "udp" | "https", port: 3000 | 3001): string | void {
 	if (port === port3000 || port === port3001) {
@@ -1202,8 +1213,9 @@ function stopServer(protocol: "udp" | "https", port: 3000 | 3001): string | void
 	return console.error("Invalid port");
 }
 
-console.log(startServer("udp", 3000));
-console.log(stopServer("https", 3001));
+startServer(serverConfig.protocol, serverConfig.port);
+// console.log(startServer("udp", 3000));
+// console.log(stopServer("https", 3001));
 
 type AnimationTF = "ease" | "ease-in" | "ease-out";
 type AnimationID = string | number;

@@ -53,15 +53,19 @@ const logValue = (x) => {
 };
 let msg = "Hello";
 msg = "Hello";
+const serverConfig = {
+    protocol: "https",
+    port: 3001,
+};
 const port3000 = 3000;
 const port3001 = 3001;
-function startServer(protocol, port) {
+const startServer = (protocol, port) => {
     if (protocol === "udp") {
         console.log(protocol);
         return "Server started at port: " + port;
     }
     return "Server started";
-}
+};
 function stopServer(protocol, port) {
     if (port === port3000 || port === port3001) {
         console.log(protocol);
@@ -69,16 +73,9 @@ function stopServer(protocol, port) {
     }
     return console.error("Invalid port");
 }
-console.log(startServer("udp", 3000));
-console.log(stopServer("https", 3001));
+startServer(serverConfig.protocol, serverConfig.port);
 function createAnimation(num1, animName, timingFunct = "ease", duration, iteration) {
-    const elem = document.querySelector(`#${num1}`);
-    if (elem) {
-        console.log((elem.style.animation = `${animName} ${timingFunct} ${duration} ${iteration}`));
-    }
-    else {
-        console.error("Error");
-    }
+    console.log(`${num1} ${animName} ${timingFunct} ${duration} ${iteration}`);
 }
 createAnimation("num1", "tasks", "ease", 134, "infinite");
 //# sourceMappingURL=app.js.map
