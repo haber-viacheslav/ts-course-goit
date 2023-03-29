@@ -1183,10 +1183,9 @@ let msg: "Hello" = "Hello";
 
 msg = "Hello";
 
-const serverConfig: {
-	protocol: "udp" | "https";
-	port: 3000 | 3001;
-} = {
+type Config = { protocol: "udp" | "https"; port: 3000 | 3001 };
+
+const serverConfig: Config = {
 	protocol: "https",
 	port: 3001,
 };
