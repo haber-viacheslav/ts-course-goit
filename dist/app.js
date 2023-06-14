@@ -1,4 +1,25 @@
 "use strict";
+class Animal {
+    move(distanceInMeters = 0) {
+        console.log(`Animal moved ${distanceInMeters}m.`);
+    }
+}
+class Dog extends Animal {
+    move(distanceInMeters = 5) {
+        console.log(`Dog moved ${distanceInMeters}m.`);
+        super.move(distanceInMeters);
+    }
+}
+class Snake extends Animal {
+    move(distanceInMeters = 10) {
+        console.log(`Snake moved ${distanceInMeters}m.`);
+        super.move(distanceInMeters);
+    }
+}
+let dog = new Dog();
+let snake = new Snake();
+dog.move();
+snake.move();
 let message = 3;
 const messages = ["33", "1", "15"];
 const arrNumber = messages.map((value) => Number.parseInt(value));
@@ -69,7 +90,7 @@ const startServer = (protocol, port) => {
 function stopServer(protocol, port) {
     if (port === port3000 || port === port3001) {
         console.log(protocol);
-        return `Server stoped at protocol: ${protocol} and port: ${port}`;
+        return `Server stopped at protocol: ${protocol} and port: ${port}`;
     }
     return console.error("Invalid port");
 }

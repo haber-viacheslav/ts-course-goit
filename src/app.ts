@@ -1024,6 +1024,31 @@
 // console.log(second);
 // console.log(third);
 
+// class Animal {
+// 	move(distanceInMeters: number = 0) {
+// 		console.log(`Animal moved ${distanceInMeters}m.`);
+// 	}
+// }
+
+// class Dog extends Animal {
+// 	move(distanceInMeters: number = 5) {
+// 		console.log(`Dog moved ${distanceInMeters}m.`);
+// 		super.move(distanceInMeters);
+// 	}
+// }
+
+// class Snake extends Animal {
+// 	move(distanceInMeters: number = 10) {
+// 		console.log(`Snake moved ${distanceInMeters}m.`);
+// 		super.move(distanceInMeters);
+// 	}
+// }
+
+// let dog = new Dog();
+// let snake = new Snake();
+
+// dog.move();
+// snake.move();
 //Code typisation practice ------------------------------------------------------------
 
 // interface IElData {
@@ -1106,31 +1131,31 @@
 
 // Union ---------------------------------------------------------------------------
 
-let message: string | number = 3;
-const messages: string[] | number[] = ["33", "1", "15"];
-const arrNumber = messages.map((value) => Number.parseInt(value));
+// let message: string | number = 3;
+// const messages: string[] | number[] = ["33", "1", "15"];
+// const arrNumber = messages.map((value) => Number.parseInt(value));
 
-console.dir(arrNumber);
+// console.dir(arrNumber);
 
-function printMassage(msg: string | number | boolean): void {
-	if (typeof msg === "string" || typeof msg === "number") {
-		console.log(msg.toString());
-	} else {
-		console.log(msg.valueOf());
-	}
-}
-// printMassage("Hello");
-// printMassage(9);
+// function printMassage(msg: string | number | boolean): void {
+// 	if (typeof msg === "string" || typeof msg === "number") {
+// 		console.log(msg.toString());
+// 	} else {
+// 		console.log(msg.valueOf());
+// 	}
+// }
+// // printMassage("Hello");
+// // printMassage(9);
 
-function showMassage(msg: string[] | number | boolean): void {
-	if (Array.isArray(msg)) {
-		console.log(msg.join(" "));
-	} else if (typeof msg === "number") {
-		console.log(msg.toFixed(2));
-	} else {
-		console.log(msg);
-	}
-}
+// function showMassage(msg: string[] | number | boolean): void {
+// 	if (Array.isArray(msg)) {
+// 		console.log(msg.join(" "));
+// 	} else if (typeof msg === "number") {
+// 		console.log(msg.toFixed(2));
+// 	} else {
+// 		console.log(msg);
+// 	}
+// }
 
 // showMassage(["Hello", "my", "friends:", "Alex", "Eric", "Nastya!"]);
 // showMassage(555.12445);
@@ -1138,95 +1163,132 @@ function showMassage(msg: string[] | number | boolean): void {
 
 // Narrowing --------------------------------------------------------------------
 
-const printReadings = (a: number | string, b: number | boolean): void => {
-	if (typeof a === typeof b) {
-		console.log(a, b);
-	} else {
-		console.log("Another type");
-	}
-};
+// const printReadings = (a: number | string, b: number | boolean): void => {
+// 	if (typeof a === typeof b) {
+// 		console.log(a, b);
+// 	} else {
+// 		console.log("Another type");
+// 	}
+// };
 
 // printReadings(4, 6);
 // printReadings("sdsdsd", 7);
 
-const printReadings2 = (a: number[] | string): void => {
-	console.log(a.slice(0, 2));
-};
+// const printReadings2 = (a: number[] | string): void => {
+// 	console.log(a.slice(0, 2));
+// };
 
 // printReadings2([4, 6, 8, 2]);
 
-const checkReadings = (readings: { system: number } | { user: number }): void => {
-	if ("system" in readings) {
-		console.log(readings.system);
-	} else {
-		console.log(readings.user);
-	}
-};
+// const checkReadings = (readings: { system: number } | { user: number }): void => {
+// 	if ("system" in readings) {
+// 		console.log(readings.system);
+// 	} else {
+// 		console.log(readings.user);
+// 	}
+// };
 
-checkReadings({ system: 10 });
-checkReadings({ user: 4 });
+// checkReadings({ system: 10 });
+// checkReadings({ user: 4 });
 
-const logValue = (x: string | Date) => {
-	if (x instanceof Date) {
-		console.log(x.getDate());
-	} else {
-		console.log(x.length);
-	}
-};
+// const logValue = (x: string | Date) => {
+// 	if (x instanceof Date) {
+// 		console.log(x.getDate());
+// 	} else {
+// 		console.log(x.length);
+// 	}
+// };
 
 // logValue(new Date());
 // logValue("Alex");
 
 // Literal types
 
-let msg: "Hello" = "Hello";
+// let msg: "Hello" = "Hello";
 
-msg = "Hello";
+// msg = "Hello";
 
-type Config = { protocol: "udp" | "https"; port: 3000 | 3001 };
+// type Config = { protocol: "udp" | "https"; port: 3000 | 3001 };
 
-const serverConfig: Config = {
-	protocol: "https",
-	port: 3001,
+// const serverConfig: Config = {
+// 	protocol: "https",
+// 	port: 3001,
+// };
+
+// const port3000: number = 3000;
+// const port3001: number = 3001;
+
+// const startServer: (protocol: "udp" | "https", port: 3000 | 3001) => string | void = (
+// 	protocol: "udp" | "https",
+// 	port: 3000 | 3001,
+// ): string | void => {
+// 	if (protocol === "udp") {
+// 		console.log(protocol);
+// 		return "Server started at port: " + port;
+// 	}
+// 	return "Server started";
+// };
+
+// function stopServer(protocol: "udp" | "https", port: 3000 | 3001): string | void {
+// 	if (port === port3000 || port === port3001) {
+// 		console.log(protocol);
+// 		return `Server stopped at protocol: ${protocol} and port: ${port}`;
+// 	}
+// 	return console.error("Invalid port");
+// }
+
+// startServer(serverConfig.protocol, serverConfig.port);
+// // console.log(startServer("udp", 3000));
+// // console.log(stopServer("https", 3001));
+
+// type AnimationTF = "ease" | "ease-in" | "ease-out";
+// type AnimationID = string | number;
+
+// function createAnimation(
+// 	num1: AnimationID,
+// 	animName: string,
+// 	timingFunc: AnimationTF = "ease",
+// 	duration: number,
+// 	iteration: number | "infinite",
+// ): void {
+// 	console.log(`${num1} ${animName} ${timingFunct} ${duration} ${iteration}`);
+// }
+
+// createAnimation("num1", "tasks", "ease", 134, "infinite");
+
+/////////////////////UDEMI/////////////////////
+
+let userData: string = "Slavik";
+
+const isBirthdayValue: boolean = true;
+const userAge: number = 30;
+let isActiveValue: boolean = true;
+const createError = (msg: string) => {
+	throw new Error(msg);
 };
 
-const port3000: number = 3000;
-const port3001: number = 3001;
-
-const startServer: (protocol: "udp" | "https", port: 3000 | 3001) => string | void = (
-	protocol: "udp" | "https",
-	port: 3000 | 3001,
-): string | void => {
-	if (protocol === "udp") {
-		console.log(protocol);
-		return "Server started at port: " + port;
+const massageMaker = (user: string, isBirthday: true, age: number, isActive: boolean): string => {
+	if (isBirthday && isActive) {
+		return `Congrats ${user.toUpperCase()}, age ${age + 1}`;
+	} else {
+		return createError("Error");
 	}
-	return "Server started";
 };
+console.log(massageMaker(userData, isBirthdayValue, userAge, isActiveValue));
+// const currRate: string = "10.05";
 
-function stopServer(protocol: "udp" | "https", port: 3000 | 3001): string | void {
-	if (port === port3000 || port === port3001) {
-		console.log(protocol);
-		return `Server stoped at protocol: ${protocol} and port: ${port}`;
-	}
-	return console.error("Invalid port");
-}
+// const fetchCurrent = (res: string): number => {
+// 	const data = JSON.parse(res);
+// 	return data;
+// };
 
-startServer(serverConfig.protocol, serverConfig.port);
-// console.log(startServer("udp", 3000));
-// console.log(stopServer("https", 3001));
+// function transferEurToUsd(available: boolean, amount: number, commission: number): void {
+// 	if (available) {
+// 		let res = fetchCurrent(currRate) * amount * commission;
+// 		console.log(res);
+// 	} else {
+// 		console.log("Сейчас обмен недоступен");
+// 	}
+// }
 
-type AnimationTF = "ease" | "ease-in" | "ease-out";
-type AnimationID = string | number;
-
-function createAnimation(
-	num1: AnimationID,
-	animName: string,
-	timingFunct: AnimationTF = "ease",
-	duration: number,
-	iteration: number | "infinite",
-): void {
-	console.log(`${num1} ${animName} ${timingFunct} ${duration} ${iteration}`);
-}
-
-createAnimation("num1", "tasks", "ease", 134, "infinite");
+// transferEurToUsd(true, 500, 1.05);
