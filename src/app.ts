@@ -1258,23 +1258,23 @@
 
 /////////////////////UDEMI/////////////////////
 
-let userData: string = "Slavik";
+// let userData: string = "Slavik";
 
-const isBirthdayValue: boolean = true;
-const userAge: number = 30;
-let isActiveValue: boolean = true;
-const createError = (msg: string) => {
-	throw new Error(msg);
-};
+// const isBirthdayValue: boolean = true;
+// const userAge: number = 30;
+// let isActiveValue: boolean = true;
+// const createError = (msg: string) => {
+// 	throw new Error(msg);
+// };
 
-const massageMaker = (user: string, isBirthday: true, age: number, isActive: boolean): string => {
-	if (isBirthday && isActive) {
-		return `Congrats ${user.toUpperCase()}, age ${age + 1}`;
-	} else {
-		return createError("Error");
-	}
-};
-console.log(massageMaker(userData, isBirthdayValue, userAge, isActiveValue));
+// const massageMaker = (user: string, isBirthday: true, age: number, isActive: boolean): string => {
+// 	if (isBirthday && isActive) {
+// 		return `Congrats ${user.toUpperCase()}, age ${age + 1}`;
+// 	} else {
+// 		return createError("Error");
+// 	}
+// };
+// console.log(massageMaker(userData, isBirthdayValue, userAge, isActiveValue));
 // const currRate: string = "10.05";
 
 // const fetchCurrent = (res: string): number => {
@@ -1292,3 +1292,161 @@ console.log(massageMaker(userData, isBirthdayValue, userAge, isActiveValue));
 // }
 
 // transferEurToUsd(true, 500, 1.05);
+
+// const userDataTuple: [boolean, number, string] = [true, 40, "John"];
+
+// // type Config = { protocol: "http" | "https"; port: 3000 | 3001 };
+
+// interface IConfig {
+// 	protocol: "http" | "https";
+// 	port: 3000 | 3001;
+// 	log: (msg: string) => void;
+// }
+// // type Role = {
+// // 	role: string;
+// // };
+// // type ConfigWithRole = Config & Role;
+
+// type StartFunction = (
+// 	protocol: "http" | "https",
+// 	port: 3000 | 3001,
+// 	log: (msg: string) => void,
+// ) => string;
+
+// interface IRole {
+// 	role: string;
+// }
+
+// interface IConfigWithRole extends IConfig, IRole {
+// 	test: boolean;
+// }
+
+// const serverConfig: IConfigWithRole = {
+// 	protocol: "https",
+// 	port: 3001,
+// 	role: "Admin",
+// 	test: false,
+// 	log: (msg: string): void => console.log(msg),
+// };
+
+// // const backupConfig: ConfigWithRole = {
+// // 	protocol: "http",
+// // 	port: 3000,
+// // 	role: "User",
+// // };
+
+// const startServer: StartFunction = (
+// 	protocol: "http" | "https",
+// 	port: 3000 | 3001,
+// 	log: (msg: string) => void,
+// ): `Server Started` => {
+// 	log(`Server started on protocol ${protocol}://server:${port}`);
+
+// 	return `Server Started`;
+// };
+
+// startServer(serverConfig.protocol, serverConfig.port, serverConfig.log);
+
+// interface IStyles {
+// 	[key: string]: string;
+// }
+
+// const styles: IStyles = {
+// 	position: "absolute",
+// 	top: "20px",
+// 	left: "50px",
+// };
+
+// Practice interfaces and types
+
+// type ValidType = "empty" | number;
+// // структура данных склада с одеждой
+
+// interface IClothesWarehouse {
+// 	jackets: ValidType;
+// 	hats: ValidType;
+// 	socks: ValidType;
+// 	pants: ValidType;
+// }
+
+// // структура данных склада с канцтоварами
+
+// interface StationeryWarehouse {
+// 	scissors: ValidType;
+// 	paper: "empty" | boolean;
+// }
+
+// // структура данных склада с бытовой техникой
+
+// interface AppliancesWarehouse {
+// 	dishwashers: ValidType;
+// 	cookers: ValidType;
+// 	mixers: ValidType;
+// }
+
+// // общая структура данных, наследует все данные из трех выше
+// // + добавляет свои
+
+// interface TotalWarehouse extends IClothesWarehouse, StationeryWarehouse, AppliancesWarehouse {
+// 	deficit: boolean;
+// 	date: Date;
+// }
+
+// // главный объект со всеми данными, должен подходить под формат TotalWarehouse
+
+// const totalData: TotalWarehouse = {
+// 	jackets: 5,
+// 	hats: "empty",
+// 	socks: "empty",
+// 	pants: 15,
+// 	scissors: 15,
+// 	paper: true,
+// 	dishwashers: 3,
+// 	cookers: "empty",
+// 	mixers: 14,
+// 	deficit: true,
+// 	date: new Date(),
+// };
+
+// // Реализуйте функцию, которая принимает в себя главный объект totalData нужного формата
+// // и возвращает всегда строку
+// // Функция должна отфильтровать данные из объекта и оставить только те названия товаров, у которых значение "empty"
+// // и поместить их в эту строку. Если таких товаров нет - возвращается другая строка (см ниже)
+
+// // С данным объектом totalData строка будет выглядеть:
+// // "We need this items: hats, socks, cookers"
+// // Товары через запятую, в конце её не должно быть. Пробел после двоеточия, в конце строки его нет.
+
+// const printReport = (data: TotalWarehouse): string => {
+// 	const emptyGoods: string[] = [];
+// 	const keys = Object.keys(data);
+// 	for (const key of keys) {
+// 		if (data[key as keyof TotalWarehouse] === "empty") {
+// 			emptyGoods.push(key);
+// 		}
+// 	}
+// 	if (emptyGoods.length) {
+// 		return `We need this items: ${emptyGoods.join(", ")}`;
+// 	}
+// 	// или
+// 	return "Everything fine";
+// };
+
+// console.log(printReport(totalData));
+
+let salary: number;
+
+salary = 500;
+
+interface IUserData {
+	isBirthdayData: boolean;
+	ageData: number;
+	userName: string;
+}
+
+let isOkay = true;
+let movement: boolean | string = false;
+
+if (isOkay) {
+	movement = "moving";
+}
