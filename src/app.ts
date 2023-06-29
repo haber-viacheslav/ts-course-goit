@@ -1434,19 +1434,59 @@
 
 // console.log(printReport(totalData));
 
-let salary: number;
+// let salary: number;
 
-salary = 500;
+// salary = 500;
 
-interface IUserData {
-	isBirthdayData: boolean;
-	ageData: number;
-	userName: string;
-}
+// interface IUserData {
+// 	isBirthdayData: boolean;
+// 	ageData: number;
+// 	userName: string;
+// }
 
-let isOkay = true;
-let movement: boolean | string = false;
+// let isOkay = true;
+// let movement: boolean | string = false;
 
-if (isOkay) {
-	movement = "moving";
-}
+// if (isOkay) {
+// 	movement = "moving";
+// }
+
+// Optional & Readonly
+
+// interface IUser {
+// 	readonly login: string;
+// 	password: string;
+// 	age: number;
+// 	// address?: string;
+// 	readonly address?: string | undefined;
+// 	parrent?: {
+// 		mother?: string;
+// 		father?: string;
+// 	};
+// }
+
+// const user: IUser = {
+// 	login: "gg@gg.com",
+// 	password: "edhjuihdjchdh",
+// 	age: 22,
+// 	address: "cccc",
+// };
+
+// let dbName: string;
+
+// user.password = "Mark";
+
+// const sendUserData = (obj: IUser, db?: string) => {
+// 	console.log(obj.parrent?.father?.toUpperCase(), db?.toUpperCase());
+// };
+// sendUserData(user, dbName!);
+
+// const basicPorts: ReadonlyArray<number> = [3000, 3001, 6645];
+// const userFreeze: Readonly<IUser> = {
+// 	login: "ii@gg.com",
+// 	password: "Fhghhjjkk",
+// 	age: 35,
+// 	address: "Odessa",
+// };
+
+const frame = (elem: string, dir: string, tFunc: string): void => {};
