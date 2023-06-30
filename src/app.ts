@@ -1024,6 +1024,31 @@
 // console.log(second);
 // console.log(third);
 
+// class Animal {
+// 	move(distanceInMeters: number = 0) {
+// 		console.log(`Animal moved ${distanceInMeters}m.`);
+// 	}
+// }
+
+// class Dog extends Animal {
+// 	move(distanceInMeters: number = 5) {
+// 		console.log(`Dog moved ${distanceInMeters}m.`);
+// 		super.move(distanceInMeters);
+// 	}
+// }
+
+// class Snake extends Animal {
+// 	move(distanceInMeters: number = 10) {
+// 		console.log(`Snake moved ${distanceInMeters}m.`);
+// 		super.move(distanceInMeters);
+// 	}
+// }
+
+// let dog = new Dog();
+// let snake = new Snake();
+
+// dog.move();
+// snake.move();
 //Code typisation practice ------------------------------------------------------------
 
 // interface IElData {
@@ -1275,67 +1300,383 @@ function logBrtMsg({
   return createError(error);
 }
 
-const userDataTuple: [boolean, number, string] = [true, 40, 'Mark'];
+// fruits.push('banana');
 
-const fruits: string[] = ['apple', 'orange', 'peach', 'kiwi'];
-const matrix: number[][] = [
-  [1, 3, 5],
-  [2, 45, 6],
-  [6, 3, 1],
-];
+// console.log(fruits);
+// const store = fruits.filter((fruit: string) => fruit !== 'kiwi').map((fruit: string) => `${fruit} - is fresh`);
+// console.log(store);
 
-fruits.push('banana');
+// const electricityUserData = {
+//   readings: 95,
+//   units: 'kWt',
+//   mode: 'double',
+// };
 
-console.log(fruits);
-const store = fruits.filter((fruit: string) => fruit !== 'kiwi').map((fruit: string) => `${fruit} - is fresh`);
-console.log(store);
+// const waterUserData = {
+//   readings: 3,
+//   units: 'm3',
+// };
 
-const electricityUserData = {
-  readings: 95,
-  units: 'kWt',
-  mode: 'double',
-};
+// const printReadings = (a: number | string, b: number | boolean): void => {
+// 	if (typeof a === typeof b) {
+// 		console.log(a, b);
+// 	} else {
+// 		console.log("Another type");
+// 	}
+// };
 
-const waterUserData = {
-  readings: 3,
-  units: 'm3',
-};
+// printReadings(4, 6);
+// printReadings("sdsdsd", 7);
 
-const elRate = 0.45;
-const wRate = 2;
+// const printReadings2 = (a: number[] | string): void => {
+// 	console.log(a.slice(0, 2));
+// };
 
-const monthPayments = [0, 0]; // [electricity, water]
+// const elRate = 0.45;
+// const wRate = 2;
 
-const calculatePayments = (
-  { mode, readings }: { mode: string; readings: number },
-  wData: { readings: number; units: string },
-  elRate: number,
-  wRate: number,
-): void => {
-  if (mode === 'double' && readings < 50) {
-    monthPayments[0] = readings * elRate * 0.7;
-  } else {
-    monthPayments[0] = readings * elRate;
-  }
+// const monthPayments = [0, 0]; // [electricity, water]
 
-  monthPayments[1] = wData.readings * wRate;
-};
+// const calculatePayments = (
+//   { mode, readings }: { mode: string; readings: number },
+//   wData: { readings: number; units: string },
+//   elRate: number,
+//   wRate: number,
+// ): void => {
+//   if (mode === 'double' && readings < 50) {
+//     monthPayments[0] = readings * elRate * 0.7;
+//   } else {
+//     monthPayments[0] = readings * elRate;
+//   }
 
-calculatePayments(electricityUserData, waterUserData, elRate, wRate);
+//   monthPayments[1] = wData.readings * wRate;
+// };
 
-const sendInvoice = (
-  monthPayments: number[],
-  electricityUserData: { readings: number; units: string },
-  waterUserData: { readings: number; units: string },
-): string => {
-  const text = `    Hello!
-    This month you used ${electricityUserData.readings} ${electricityUserData.units} of electricity
-    It will cost: ${monthPayments[0]}€
-    
-    This month you used ${waterUserData.readings} ${waterUserData.units} of water
-    It will cost: ${monthPayments[1]}€`;
+// calculatePayments(electricityUserData, waterUserData, elRate, wRate);
 
-  return text;
-};
+// const sendInvoice = (
+//   monthPayments: number[],
+//   electricityUserData: { readings: number; units: string },
+//   waterUserData: { readings: number; units: string },
+// ): string => {
+//   const text = `    Hello!
+//     This month you used ${electricityUserData.readings} ${electricityUserData.units} of electricity
+//     It will cost: ${monthPayments[0]}€
 
-sendInvoice(monthPayments, electricityUserData, waterUserData);
+//     This month you used ${waterUserData.readings} ${waterUserData.units} of water
+//     It will cost: ${monthPayments[1]}€`;
+
+//   return text;
+// };
+
+// sendInvoice(monthPayments, electricityUserData, waterUserData);
+// const checkReadings = (readings: { system: number } | { user: number }): void => {
+// 	if ("system" in readings) {
+// 		console.log(readings.system);
+// 	} else {
+// 		console.log(readings.user);
+// 	}
+// };
+
+// checkReadings({ system: 10 });
+// checkReadings({ user: 4 });
+
+// const logValue = (x: string | Date) => {
+// 	if (x instanceof Date) {
+// 		console.log(x.getDate());
+// 	} else {
+// 		console.log(x.length);
+// 	}
+// };
+
+// logValue(new Date());
+// logValue("Alex");
+
+// Literal types
+
+// let msg: "Hello" = "Hello";
+
+// msg = "Hello";
+
+// type Config = { protocol: "udp" | "https"; port: 3000 | 3001 };
+
+// const serverConfig: Config = {
+// 	protocol: "https",
+// 	port: 3001,
+// };
+
+// const port3000: number = 3000;
+// const port3001: number = 3001;
+
+// const startServer: (protocol: "udp" | "https", port: 3000 | 3001) => string | void = (
+// 	protocol: "udp" | "https",
+// 	port: 3000 | 3001,
+// ): string | void => {
+// 	if (protocol === "udp") {
+// 		console.log(protocol);
+// 		return "Server started at port: " + port;
+// 	}
+// 	return "Server started";
+// };
+
+// function stopServer(protocol: "udp" | "https", port: 3000 | 3001): string | void {
+// 	if (port === port3000 || port === port3001) {
+// 		console.log(protocol);
+// 		return `Server stopped at protocol: ${protocol} and port: ${port}`;
+// 	}
+// 	return console.error("Invalid port");
+// }
+
+// startServer(serverConfig.protocol, serverConfig.port);
+// // console.log(startServer("udp", 3000));
+// // console.log(stopServer("https", 3001));
+
+// type AnimationTF = "ease" | "ease-in" | "ease-out";
+// type AnimationID = string | number;
+
+// function createAnimation(
+// 	num1: AnimationID,
+// 	animName: string,
+// 	timingFunc: AnimationTF = "ease",
+// 	duration: number,
+// 	iteration: number | "infinite",
+// ): void {
+// 	console.log(`${num1} ${animName} ${timingFunct} ${duration} ${iteration}`);
+// }
+
+// createAnimation("num1", "tasks", "ease", 134, "infinite");
+
+/////////////////////UDEMI/////////////////////
+
+// let userData: string = "Slavik";
+
+// const isBirthdayValue: boolean = true;
+// const userAge: number = 30;
+// let isActiveValue: boolean = true;
+// const createError = (msg: string) => {
+// 	throw new Error(msg);
+// };
+
+// const massageMaker = (user: string, isBirthday: true, age: number, isActive: boolean): string => {
+// 	if (isBirthday && isActive) {
+// 		return `Congrats ${user.toUpperCase()}, age ${age + 1}`;
+// 	} else {
+// 		return createError("Error");
+// 	}
+// };
+// console.log(massageMaker(userData, isBirthdayValue, userAge, isActiveValue));
+// const currRate: string = "10.05";
+
+// const fetchCurrent = (res: string): number => {
+// 	const data = JSON.parse(res);
+// 	return data;
+// };
+
+// function transferEurToUsd(available: boolean, amount: number, commission: number): void {
+// 	if (available) {
+// 		let res = fetchCurrent(currRate) * amount * commission;
+// 		console.log(res);
+// 	} else {
+// 		console.log("Сейчас обмен недоступен");
+// 	}
+// }
+
+// transferEurToUsd(true, 500, 1.05);
+
+// const userDataTuple: [boolean, number, string] = [true, 40, "John"];
+
+// // type Config = { protocol: "http" | "https"; port: 3000 | 3001 };
+
+// interface IConfig {
+// 	protocol: "http" | "https";
+// 	port: 3000 | 3001;
+// 	log: (msg: string) => void;
+// }
+// // type Role = {
+// // 	role: string;
+// // };
+// // type ConfigWithRole = Config & Role;
+
+// type StartFunction = (
+// 	protocol: "http" | "https",
+// 	port: 3000 | 3001,
+// 	log: (msg: string) => void,
+// ) => string;
+
+// interface IRole {
+// 	role: string;
+// }
+
+// interface IConfigWithRole extends IConfig, IRole {
+// 	test: boolean;
+// }
+
+// const serverConfig: IConfigWithRole = {
+// 	protocol: "https",
+// 	port: 3001,
+// 	role: "Admin",
+// 	test: false,
+// 	log: (msg: string): void => console.log(msg),
+// };
+
+// // const backupConfig: ConfigWithRole = {
+// // 	protocol: "http",
+// // 	port: 3000,
+// // 	role: "User",
+// // };
+
+// const startServer: StartFunction = (
+// 	protocol: "http" | "https",
+// 	port: 3000 | 3001,
+// 	log: (msg: string) => void,
+// ): `Server Started` => {
+// 	log(`Server started on protocol ${protocol}://server:${port}`);
+
+// 	return `Server Started`;
+// };
+
+// startServer(serverConfig.protocol, serverConfig.port, serverConfig.log);
+
+// interface IStyles {
+// 	[key: string]: string;
+// }
+
+// const styles: IStyles = {
+// 	position: "absolute",
+// 	top: "20px",
+// 	left: "50px",
+// };
+
+// Practice interfaces and types
+
+// type ValidType = "empty" | number;
+// // структура данных склада с одеждой
+
+// interface IClothesWarehouse {
+// 	jackets: ValidType;
+// 	hats: ValidType;
+// 	socks: ValidType;
+// 	pants: ValidType;
+// }
+
+// // структура данных склада с канцтоварами
+
+// interface StationeryWarehouse {
+// 	scissors: ValidType;
+// 	paper: "empty" | boolean;
+// }
+
+// // структура данных склада с бытовой техникой
+
+// interface AppliancesWarehouse {
+// 	dishwashers: ValidType;
+// 	cookers: ValidType;
+// 	mixers: ValidType;
+// }
+
+// // общая структура данных, наследует все данные из трех выше
+// // + добавляет свои
+
+// interface TotalWarehouse extends IClothesWarehouse, StationeryWarehouse, AppliancesWarehouse {
+// 	deficit: boolean;
+// 	date: Date;
+// }
+
+// // главный объект со всеми данными, должен подходить под формат TotalWarehouse
+
+// const totalData: TotalWarehouse = {
+// 	jackets: 5,
+// 	hats: "empty",
+// 	socks: "empty",
+// 	pants: 15,
+// 	scissors: 15,
+// 	paper: true,
+// 	dishwashers: 3,
+// 	cookers: "empty",
+// 	mixers: 14,
+// 	deficit: true,
+// 	date: new Date(),
+// };
+
+// // Реализуйте функцию, которая принимает в себя главный объект totalData нужного формата
+// // и возвращает всегда строку
+// // Функция должна отфильтровать данные из объекта и оставить только те названия товаров, у которых значение "empty"
+// // и поместить их в эту строку. Если таких товаров нет - возвращается другая строка (см ниже)
+
+// // С данным объектом totalData строка будет выглядеть:
+// // "We need this items: hats, socks, cookers"
+// // Товары через запятую, в конце её не должно быть. Пробел после двоеточия, в конце строки его нет.
+
+// const printReport = (data: TotalWarehouse): string => {
+// 	const emptyGoods: string[] = [];
+// 	const keys = Object.keys(data);
+// 	for (const key of keys) {
+// 		if (data[key as keyof TotalWarehouse] === "empty") {
+// 			emptyGoods.push(key);
+// 		}
+// 	}
+// 	if (emptyGoods.length) {
+// 		return `We need this items: ${emptyGoods.join(", ")}`;
+// 	}
+// 	// или
+// 	return "Everything fine";
+// };
+
+// console.log(printReport(totalData));
+
+// let salary: number;
+
+// salary = 500;
+
+// interface IUserData {
+// 	isBirthdayData: boolean;
+// 	ageData: number;
+// 	userName: string;
+// }
+
+// let isOkay = true;
+// let movement: boolean | string = false;
+
+// if (isOkay) {
+// 	movement = "moving";
+// }
+
+// Optional & Readonly
+
+// interface IUser {
+// 	readonly login: string;
+// 	password: string;
+// 	age: number;
+// 	// address?: string;
+// 	readonly address?: string | undefined;
+// 	parrent?: {
+// 		mother?: string;
+// 		father?: string;
+// 	};
+// }
+
+// const user: IUser = {
+// 	login: "gg@gg.com",
+// 	password: "edhjuihdjchdh",
+// 	age: 22,
+// 	address: "cccc",
+// };
+
+// let dbName: string;
+
+// user.password = "Mark";
+
+// const sendUserData = (obj: IUser, db?: string) => {
+// 	console.log(obj.parrent?.father?.toUpperCase(), db?.toUpperCase());
+// };
+// sendUserData(user, dbName!);
+
+// const basicPorts: ReadonlyArray<number> = [3000, 3001, 6645];
+// const userFreeze: Readonly<IUser> = {
+// 	login: "ii@gg.com",
+// 	password: "Fhghhjjkk",
+// 	age: 35,
+// 	address: "Odessa",
+// };
+
+const frame = (elem: string, dir: string, tFunc: string): void => {};
