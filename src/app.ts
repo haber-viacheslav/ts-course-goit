@@ -1106,127 +1106,236 @@
 
 // Union ---------------------------------------------------------------------------
 
-let message: string | number = 3;
-const messages: string[] | number[] = ["33", "1", "15"];
-const arrNumber = messages.map((value) => Number.parseInt(value));
+// let message: string | number = 3;
+// const messages: string[] | number[] = ["33", "1", "15"];
+// const arrNumber = messages.map((value) => Number.parseInt(value));
 
-console.dir(arrNumber);
+// console.dir(arrNumber);
 
-function printMassage(msg: string | number | boolean): void {
-	if (typeof msg === "string" || typeof msg === "number") {
-		console.log(msg.toString());
-	} else {
-		console.log(msg.valueOf());
-	}
+// function printMassage(msg: string | number | boolean): void {
+// 	if (typeof msg === "string" || typeof msg === "number") {
+// 		console.log(msg.toString());
+// 	} else {
+// 		console.log(msg.valueOf());
+// 	}
+// }
+// // printMassage("Hello");
+// // printMassage(9);
+
+// function showMassage(msg: string[] | number | boolean): void {
+// 	if (Array.isArray(msg)) {
+// 		console.log(msg.join(" "));
+// 	} else if (typeof msg === "number") {
+// 		console.log(msg.toFixed(2));
+// 	} else {
+// 		console.log(msg);
+// 	}
+// }
+
+// // showMassage(["Hello", "my", "friends:", "Alex", "Eric", "Nastya!"]);
+// // showMassage(555.12445);
+// // showMassage(true);
+
+// // Narrowing --------------------------------------------------------------------
+
+// const printReadings = (a: number | string, b: number | boolean): void => {
+// 	if (typeof a === typeof b) {
+// 		console.log(a, b);
+// 	} else {
+// 		console.log("Another type");
+// 	}
+// };
+
+// // printReadings(4, 6);
+// // printReadings("sdsdsd", 7);
+
+// const printReadings2 = (a: number[] | string): void => {
+// 	console.log(a.slice(0, 2));
+// };
+
+// // printReadings2([4, 6, 8, 2]);
+
+// const checkReadings = (readings: { system: number } | { user: number }): void => {
+// 	if ("system" in readings) {
+// 		console.log(readings.system);
+// 	} else {
+// 		console.log(readings.user);
+// 	}
+// };
+
+// checkReadings({ system: 10 });
+// checkReadings({ user: 4 });
+
+// const logValue = (x: string | Date) => {
+// 	if (x instanceof Date) {
+// 		console.log(x.getDate());
+// 	} else {
+// 		console.log(x.length);
+// 	}
+// };
+
+// // logValue(new Date());
+// // logValue("Alex");
+
+// // Literal types
+
+// let msg: "Hello" = "Hello";
+
+// msg = "Hello";
+
+// type Config = { protocol: "udp" | "https"; port: 3000 | 3001 };
+
+// const serverConfig: Config = {
+// 	protocol: "https",
+// 	port: 3001,
+// };
+
+// const port3000: number = 3000;
+// const port3001: number = 3001;
+
+// const startServer: (protocol: "udp" | "https", port: 3000 | 3001) => string | void = (
+// 	protocol: "udp" | "https",
+// 	port: 3000 | 3001,
+// ): string | void => {
+// 	if (protocol === "udp") {
+// 		console.log(protocol);
+// 		return "Server started at port: " + port;
+// 	}
+// 	return "Server started";
+// };
+
+// function stopServer(protocol: "udp" | "https", port: 3000 | 3001): string | void {
+// 	if (port === port3000 || port === port3001) {
+// 		console.log(protocol);
+// 		return `Server stoped at protocol: ${protocol} and port: ${port}`;
+// 	}
+// 	return console.error("Invalid port");
+// }
+
+// startServer(serverConfig.protocol, serverConfig.port);
+// // console.log(startServer("udp", 3000));
+// // console.log(stopServer("https", 3001));
+
+// type AnimationTF = "ease" | "ease-in" | "ease-out";
+// type AnimationID = string | number;
+
+// function createAnimation(
+// 	num1: AnimationID,
+// 	animName: string,
+// 	timingFunct: AnimationTF = "ease",
+// 	duration: number,
+// 	iteration: number | "infinite",
+// ): void {
+// 	console.log(`${num1} ${animName} ${timingFunct} ${duration} ${iteration}`);
+// }
+
+// createAnimation("num1", "tasks", "ease", 134, "infinite");
+
+// let id: symbol = Symbol('id');
+
+// const data = {
+//   [id]: 1,
+// };
+
+// console.log(data);
+// const num1: bigint = 1n;
+// const num2: bigint = 3n;
+// console.log(num1 + num2);
+
+const userData = {
+  isBirthdayData: true,
+  ageData: 40,
+  userNameData: 'Joe',
+  messages: {
+    error: 'Error',
+    success: 'Success',
+  },
+};
+
+const createError = (msg: string) => {
+  throw new Error(msg);
+};
+
+function logBrtMsg({
+  isBirthdayData,
+  userNameData,
+  ageData,
+  messages: { error, success },
+}: {
+  isBirthdayData: boolean;
+  userNameData: string;
+  ageData: number;
+  messages: { error: string; success: string };
+}): string {
+  if (isBirthdayData === true) {
+    return `Congrats ${userNameData.toLowerCase()}, age: ${ageData + 1} ${success}!!!`;
+  } else if (isBirthdayData === false) {
+    return 'too bad';
+  }
+  return createError(error);
 }
-// printMassage("Hello");
-// printMassage(9);
 
-function showMassage(msg: string[] | number | boolean): void {
-	if (Array.isArray(msg)) {
-		console.log(msg.join(" "));
-	} else if (typeof msg === "number") {
-		console.log(msg.toFixed(2));
-	} else {
-		console.log(msg);
-	}
-}
+const userDataTuple: [boolean, number, string] = [true, 40, 'Mark'];
 
-// showMassage(["Hello", "my", "friends:", "Alex", "Eric", "Nastya!"]);
-// showMassage(555.12445);
-// showMassage(true);
+const fruits: string[] = ['apple', 'orange', 'peach', 'kiwi'];
+const matrix: number[][] = [
+  [1, 3, 5],
+  [2, 45, 6],
+  [6, 3, 1],
+];
 
-// Narrowing --------------------------------------------------------------------
+fruits.push('banana');
 
-const printReadings = (a: number | string, b: number | boolean): void => {
-	if (typeof a === typeof b) {
-		console.log(a, b);
-	} else {
-		console.log("Another type");
-	}
+console.log(fruits);
+const store = fruits.filter((fruit: string) => fruit !== 'kiwi').map((fruit: string) => `${fruit} - is fresh`);
+console.log(store);
+
+const electricityUserData = {
+  readings: 95,
+  units: 'kWt',
+  mode: 'double',
 };
 
-// printReadings(4, 6);
-// printReadings("sdsdsd", 7);
-
-const printReadings2 = (a: number[] | string): void => {
-	console.log(a.slice(0, 2));
+const waterUserData = {
+  readings: 3,
+  units: 'm3',
 };
 
-// printReadings2([4, 6, 8, 2]);
+const elRate = 0.45;
+const wRate = 2;
 
-const checkReadings = (readings: { system: number } | { user: number }): void => {
-	if ("system" in readings) {
-		console.log(readings.system);
-	} else {
-		console.log(readings.user);
-	}
+const monthPayments = [0, 0]; // [electricity, water]
+
+const calculatePayments = (
+  { mode, readings }: { mode: string; readings: number },
+  wData: { readings: number; units: string },
+  elRate: number,
+  wRate: number,
+): void => {
+  if (mode === 'double' && readings < 50) {
+    monthPayments[0] = readings * elRate * 0.7;
+  } else {
+    monthPayments[0] = readings * elRate;
+  }
+
+  monthPayments[1] = wData.readings * wRate;
 };
 
-checkReadings({ system: 10 });
-checkReadings({ user: 4 });
+calculatePayments(electricityUserData, waterUserData, elRate, wRate);
 
-const logValue = (x: string | Date) => {
-	if (x instanceof Date) {
-		console.log(x.getDate());
-	} else {
-		console.log(x.length);
-	}
+const sendInvoice = (
+  monthPayments: number[],
+  electricityUserData: { readings: number; units: string },
+  waterUserData: { readings: number; units: string },
+): string => {
+  const text = `    Hello!
+    This month you used ${electricityUserData.readings} ${electricityUserData.units} of electricity
+    It will cost: ${monthPayments[0]}€
+    
+    This month you used ${waterUserData.readings} ${waterUserData.units} of water
+    It will cost: ${monthPayments[1]}€`;
+
+  return text;
 };
 
-// logValue(new Date());
-// logValue("Alex");
-
-// Literal types
-
-let msg: "Hello" = "Hello";
-
-msg = "Hello";
-
-type Config = { protocol: "udp" | "https"; port: 3000 | 3001 };
-
-const serverConfig: Config = {
-	protocol: "https",
-	port: 3001,
-};
-
-const port3000: number = 3000;
-const port3001: number = 3001;
-
-const startServer: (protocol: "udp" | "https", port: 3000 | 3001) => string | void = (
-	protocol: "udp" | "https",
-	port: 3000 | 3001,
-): string | void => {
-	if (protocol === "udp") {
-		console.log(protocol);
-		return "Server started at port: " + port;
-	}
-	return "Server started";
-};
-
-function stopServer(protocol: "udp" | "https", port: 3000 | 3001): string | void {
-	if (port === port3000 || port === port3001) {
-		console.log(protocol);
-		return `Server stoped at protocol: ${protocol} and port: ${port}`;
-	}
-	return console.error("Invalid port");
-}
-
-startServer(serverConfig.protocol, serverConfig.port);
-// console.log(startServer("udp", 3000));
-// console.log(stopServer("https", 3001));
-
-type AnimationTF = "ease" | "ease-in" | "ease-out";
-type AnimationID = string | number;
-
-function createAnimation(
-	num1: AnimationID,
-	animName: string,
-	timingFunct: AnimationTF = "ease",
-	duration: number,
-	iteration: number | "infinite",
-): void {
-	console.log(`${num1} ${animName} ${timingFunct} ${duration} ${iteration}`);
-}
-
-createAnimation("num1", "tasks", "ease", 134, "infinite");
+sendInvoice(monthPayments, electricityUserData, waterUserData);
