@@ -1679,4 +1679,162 @@ function logBrtMsg({
 // 	address: "Odessa",
 // };
 
-const frame = (elem: string, dir: string, tFunc: string): void => {};
+// ENUMS ///////
+
+// enum Directions {
+//   TOP,
+//   RIGHT,
+//   LEFT,
+//   BOTTON,
+// }
+
+// enum TimingFunc {
+//   EASE = 'ease',
+//   EASE_IN = 'ease-in',
+//   LINEAR = 'linear',
+// }
+
+// const frame = (elem: string, dir: Directions, tFunc: TimingFunc): void => {
+//   if (dir === Directions.RIGHT) {
+//     console.log(tFunc);
+//     console.log(elem);
+//   }
+// };
+
+// frame('id', Directions.RIGHT, TimingFunc.LINEAR);
+
+// UNKNOWN --------- better then ANY
+// let smth: unknown;
+
+// smth = 'str';
+
+// let data: string[] = smth;
+
+// data.find(e => console.log(e));
+
+// const some: unknown = 30;
+
+// const fetchContacts = (data: unknown): void | string => {
+//   if (typeof data === 'string') {
+//     return data.toLowerCase();
+//   }
+// };
+
+// fetchContacts('dsss'); //?
+
+// const userD = `{
+//   "isBirthdayData": true,
+//   "ageData": 40,
+//   "userNameData": "Joe"}`;
+
+// const safeParse = (s: string): unknown => {
+//   return JSON.parse(s);
+// };
+
+// const data = safeParse(userD);
+
+// const transferData = (value: unknown) => {
+//   if (typeof value === 'string') {
+//     console.log(value.toUpperCase());
+//   } else if (typeof value === 'object' && value) {
+//     console.log(value);
+//   } else {
+//     console.error('Error');
+//   }
+// };
+
+// transferData(data); //?
+
+// const dataFromControl = {
+//   water: 250,
+//   electricity: 16,
+// };
+
+// const dataFromUser = {
+//   water: 250,
+//   electricity: 16,
+// };
+
+// const checkReadings = (data: typeof dataFromControl, userData: typeof dataFromUser): boolean => {
+//   if (data.electricity === userData.electricity && data.water === userData.water) {
+//     return true;
+//   }
+//   return false;
+// };
+
+// checkReadings(dataFromControl, dataFromUser); //?
+
+// const PI = 3.14;
+
+// let PIClone: typeof PI;
+
+// Practice -----------------------------------------------------------------------------------------------------------
+
+// Перечисление с названием TypesOfMedia, которое включает строчные типы video, audio
+
+// Перечисление с названием FormatsOfMedia, которое включает строчные видео-форматы: .mp4, .mov, .mkv, .flv, .webM
+
+// Описание интерфейса, в котором:
+// name - строка
+// type - один из перечисления выше
+// format = один из перечисления выше
+// subtitles - необязательное поле типа строка
+// marks - необязательное поле неизвестного типа
+
+enum TypesOfMedia {
+  VIDEO = 'video',
+  AUDIO = 'audio',
+}
+
+enum FormatsOfMedia {
+  MP4 = '.mp4',
+  MOV = '.mov',
+  MKV = '.mkv',
+  FLV = '.flv',
+  WEBM = '.webM',
+}
+
+interface IMediaData {
+  name: string;
+  type: TypesOfMedia;
+  format: FormatsOfMedia;
+  subtitles?: string;
+  marks?: unknown;
+}
+
+function playMedia(
+  { name, type, format, subtitles, marks }: IMediaData = {
+    name: 'example',
+    type: TypesOfMedia.AUDIO,
+    format: FormatsOfMedia.FLV,
+  },
+): string {
+  let marksLog: string;
+
+  // Создать функционал, что если marks - это массив, то "сложить" все эелементы в одну строку и поместить в marksLog
+  // Если это строка, то просто поместить её в marksLog
+  // Если что-то другое - то marksLog = "Unsupported type of marks"
+  // Не допускайте any!
+
+  if (Array.isArray(marks)) {
+    marksLog = marks.join(', ');
+  } else if (typeof marks === 'string') {
+    marksLog = marks;
+  } else {
+    marksLog = 'Unsupported type of marks';
+  }
+  console.log(`Media ${name}${format} is ${type}
+    Marks: ${marksLog}
+    Subtitles: ${subtitles ?? 'none'}`);
+  // помните что это за оператор ??
+
+  return 'Media started';
+}
+
+playMedia({
+  name: 'WoW',
+  format: FormatsOfMedia.MP4,
+  type: TypesOfMedia.VIDEO,
+  subtitles: 'hmhmhm hmhmhm doh',
+  marks: ['4:30', '5:40'],
+});
