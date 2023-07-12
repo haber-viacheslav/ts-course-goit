@@ -1267,38 +1267,38 @@
 // const num2: bigint = 3n;
 // console.log(num1 + num2);
 
-const userData = {
-  isBirthdayData: true,
-  ageData: 40,
-  userNameData: 'Joe',
-  messages: {
-    error: 'Error',
-    success: 'Success',
-  },
-};
+// const userData = {
+// 	isBirthdayData: true,
+// 	ageData: 40,
+// 	userNameData: "Joe",
+// 	messages: {
+// 		error: "Error",
+// 		success: "Success",
+// 	},
+// };
 
-const createError = (msg: string) => {
-  throw new Error(msg);
-};
+// const createError = (msg: string) => {
+// 	throw new Error(msg);
+// };
 
-function logBrtMsg({
-  isBirthdayData,
-  userNameData,
-  ageData,
-  messages: { error, success },
-}: {
-  isBirthdayData: boolean;
-  userNameData: string;
-  ageData: number;
-  messages: { error: string; success: string };
-}): string {
-  if (isBirthdayData === true) {
-    return `Congrats ${userNameData.toLowerCase()}, age: ${ageData + 1} ${success}!!!`;
-  } else if (isBirthdayData === false) {
-    return 'too bad';
-  }
-  return createError(error);
-}
+// function logBrtMsg({
+// 	isBirthdayData,
+// 	userNameData,
+// 	ageData,
+// 	messages: { error, success },
+// }: {
+// 	isBirthdayData: boolean;
+// 	userNameData: string;
+// 	ageData: number;
+// 	messages: { error: string; success: string };
+// }): string {
+// 	if (isBirthdayData === true) {
+// 		return `Congrats ${userNameData.toLowerCase()}, age: ${ageData + 1} ${success}!!!`;
+// 	} else if (isBirthdayData === false) {
+// 		return "too bad";
+// 	}
+// 	return createError(error);
+// }
 
 // fruits.push('banana');
 
@@ -1781,60 +1781,386 @@ function logBrtMsg({
 // subtitles - необязательное поле типа строка
 // marks - необязательное поле неизвестного типа
 
-enum TypesOfMedia {
-  VIDEO = 'video',
-  AUDIO = 'audio',
-}
+// enum TypesOfMedia {
+//   VIDEO = 'video',
+//   AUDIO = 'audio',
+// }
 
-enum FormatsOfMedia {
-  MP4 = '.mp4',
-  MOV = '.mov',
-  MKV = '.mkv',
-  FLV = '.flv',
-  WEBM = '.webM',
-}
+// enum FormatsOfMedia {
+//   MP4 = '.mp4',
+//   MOV = '.mov',
+//   MKV = '.mkv',
+//   FLV = '.flv',
+//   WEBM = '.webM',
+// }
 
-interface IMediaData {
-  name: string;
-  type: TypesOfMedia;
-  format: FormatsOfMedia;
-  subtitles?: string;
-  marks?: unknown;
-}
+// interface IMediaData {
+//   name: string;
+//   type: TypesOfMedia;
+//   format: FormatsOfMedia;
+//   subtitles?: string;
+//   marks?: unknown;
+// }
 
-function playMedia(
-  { name, type, format, subtitles, marks }: IMediaData = {
-    name: 'example',
-    type: TypesOfMedia.AUDIO,
-    format: FormatsOfMedia.FLV,
-  },
-): string {
-  let marksLog: string;
+// function playMedia(
+//   { name, type, format, subtitles, marks }: IMediaData = {
+//     name: 'example',
+//     type: TypesOfMedia.AUDIO,
+//     format: FormatsOfMedia.FLV,
+//   },
+// ): string {
+//   let marksLog: string;
 
-  // Создать функционал, что если marks - это массив, то "сложить" все эелементы в одну строку и поместить в marksLog
-  // Если это строка, то просто поместить её в marksLog
-  // Если что-то другое - то marksLog = "Unsupported type of marks"
-  // Не допускайте any!
+//   // Создать функционал, что если marks - это массив, то "сложить" все эелементы в одну строку и поместить в marksLog
+//   // Если это строка, то просто поместить её в marksLog
+//   // Если что-то другое - то marksLog = "Unsupported type of marks"
+//   // Не допускайте any!
 
-  if (Array.isArray(marks)) {
-    marksLog = marks.join(', ');
-  } else if (typeof marks === 'string') {
-    marksLog = marks;
-  } else {
-    marksLog = 'Unsupported type of marks';
-  }
-  console.log(`Media ${name}${format} is ${type}
-    Marks: ${marksLog}
-    Subtitles: ${subtitles ?? 'none'}`);
-  // помните что это за оператор ??
+//   if (Array.isArray(marks)) {
+//     marksLog = marks.join(', ');
+//   } else if (typeof marks === 'string') {
+//     marksLog = marks;
+//   } else {
+//     marksLog = 'Unsupported type of marks';
+//   }
+//   console.log(`Media ${name}${format} is ${type}
+//     Marks: ${marksLog}
+//     Subtitles: ${subtitles ?? 'none'}`);
+//   // помните что это за оператор ??
 
-  return 'Media started';
-}
+//   return 'Media started';
+// }
 
-playMedia({
-  name: 'WoW',
-  format: FormatsOfMedia.MP4,
-  type: TypesOfMedia.VIDEO,
-  subtitles: 'hmhmhm hmhmhm doh',
-  marks: ['4:30', '5:40'],
-});
+// playMedia({
+//   name: 'WoW',
+//   format: FormatsOfMedia.MP4,
+//   type: TypesOfMedia.VIDEO,
+//   subtitles: 'hmhmhm hmhmhm doh',
+//   marks: ['4:30', '5:40'],
+// });
+
+// import axios from "axios";
+
+// interface ITypeOptions {
+// 	url: string;
+// 	method: "GET" | "POST";
+// }
+// const requestOptions: ITypeOptions = {
+// 	url: "https://648ad79917f1536d65e9cc70.mockapi.io/tweets",
+// 	method: "GET",
+// };
+
+// const fetchData = (url: string, method: "GET" | "POST"): void => {
+// 	console.log("Fetched!!", url, method);
+// };
+
+// fetchData("wweds", "GET");
+// // fetchData(requestOptions.url, requestOptions.method as "GET");
+
+// fetchData(requestOptions.url, <"GET">requestOptions.method);
+
+// const box = document.querySelector(".box") as HTMLElement;
+// const input = <HTMLInputElement>document.querySelector("input");
+
+// const someNumber: number = +input.value;
+// console.log(someNumber);
+
+// let a = "value" as const;
+// let b = [15, "star", true] as const;
+// let c = { f: 105 } as const;
+
+// let value = "value" as const;
+// let arr = ["sv", "kd", "ddd"];
+// let obj = { f: 100, k: 35 };
+
+// let T = Math.round(Math.random() * 1) ? "yes" : "no";
+// console.log(T);
+
+// // let num1: Number = new Number(5);
+// // let num2: number = 5;
+// // let num3 = Number(5);
+
+// // num1 = num2; // it`s ok
+// // num2 = num1; //error
+
+// const num = 5;
+// const strNumber: string = num.toString();
+// const str = "5";
+// const numFromString = +str;
+
+// interface IDepartment {
+// 	name: string;
+// 	budget: number;
+// }
+
+// const department: IDepartment = {
+// 	name: "web-dev",
+// 	budget: 50000,
+// };
+
+// interface IProject {
+// 	name: string;
+// 	projectBudget: number;
+// }
+
+// // const mainProject: IProject = {
+// // 	...department,
+// // 	projectBudget: 150000,
+// // };
+
+// const transformDepartment = (department: IDepartment, amount: number): IProject => {
+// 	return {
+// 		name: department.name,
+// 		projectBudget: amount,
+// 	};
+// };
+
+// const mainProject: IProject = transformDepartment(department, 4000);
+// console.log(mainProject);
+
+// const isNumber = (n: string[] | number | boolean): n is number => {
+// 	return typeof n === "number";
+// };
+
+// function showMassage(msg: string[] | number | boolean): void {
+// 	if (Array.isArray(msg)) {
+// 		msg.map((item) => console.log(item));
+// 	} else if (isNumber(msg)) {
+// 		console.log(msg, "msg is number");
+// 	} else {
+// 		console.log(msg);
+// 	}
+// }
+
+// showMassage(["ddd", "dfgdd", "ewqrtyu"]);
+// showMassage(158754);
+// showMassage(true);
+
+// interface ICar {
+// 	name: "car";
+// 	engine: string;
+// 	wheels: {
+// 		quantity: number;
+// 		protector: string;
+// 		seasone: "spring" | "autemn" | "summer" | "winter";
+// 	};
+// }
+
+// interface IShip {
+// 	name: "ship";
+// 	engine: string;
+// 	sail: string;
+// }
+
+// interface IAirplane {
+// 	name: "airplane";
+// 	engine: string;
+// 	wings: string;
+// }
+
+// interface IJet {
+// 	name: "jet";
+// 	engine: string;
+// 	fuel: string;
+// }
+
+// interface IComplexVehicle {
+// 	name: "car" | "ship" | "airplane" | "jet";
+// 	engine: string;
+// 	wheels?: {
+// 		quantity: number;
+// 		protector: string;
+// 		seasone: "spring" | "autemn" | "summer" | "winter";
+// 	};
+// 	sail?: string;
+// 	fuel?: string;
+// 	wings?: string;
+// }
+
+// type Vehicles = ICar | IShip | IAirplane | IJet;
+
+// const isCar = (car: Vehicles): car is ICar => {
+// 	return (car as ICar).wheels !== undefined;
+// };
+// const isShip = (ship: Vehicles): ship is IShip => {
+// 	return "sail" in ship;
+// };
+
+// const isAirplane = (plane: Vehicles) => {
+// 	return (plane as IAirplane).wings !== undefined;
+// };
+
+// const car: ICar = {
+// 	name: "car",
+// 	engine: "V8",
+// 	wheels: {
+// 		quantity: 4,
+// 		protector: "slick",
+// 		seasone: "winter",
+// 	},
+// };
+// const repairVechicle = (vehicle: IComplexVehicle) => {
+// if (isCar(vehicle)) {
+// 	console.log(vehicle.wheels);
+// } else if (isShip(vehicle)) {
+// 	console.log(vehicle.sail);
+// } else if (isAirplane(vehicle)) {
+// 	console.log(vehicle.wings);
+// }
+// 	switch (vehicle.name) {
+// 		case "car":
+// 			console.log(vehicle.wheels?.quantity! * 2);
+// 			break;
+// 		case "ship":
+// 			console.log(vehicle.sail);
+// 			break;
+// 		case "airplane":
+// 			console.log(vehicle.wings);
+// 			break;
+// 		case "jet":
+// 			console.log(vehicle.fuel);
+// 			break;
+// 		default:
+// 			// const smth: never = vehicle;
+// 			console.log("Not found");
+// 			break;
+// 	}
+// };
+// repairVechicle(car);
+
+// Overload -------------------------------------------------------------------
+
+// interface Square {
+// 	side: number;
+// 	area: number;
+// }
+
+// interface Rect {
+// 	sideA: number;
+// 	sideB: number;
+// 	area: number;
+// }
+// type Figure = Square | Rect;
+
+// function calculateArea(a: number, b: number): Rect;
+// function calculateArea(side: number): Square;
+// function calculateArea(a: number, b?: number): Figure {
+// 	if (b) {
+// 		const rect: Rect = {
+// 			sideA: a,
+// 			sideB: b,
+// 			area: a * b,
+// 		};
+// 		console.log(rect);
+
+// 		return rect;
+// 	} else {
+// 		const square: Square = {
+// 			side: a,
+// 			area: Math.pow(a, 2),
+// 		};
+// 		console.log(square);
+
+// 		return square;
+// 	}
+// }
+// calculateArea(4, 5);
+// calculateArea(2);
+
+// practice!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+// Request
+
+// type Animal = "cat" | "dog" | "bird";
+
+// enum AnimalStatus {
+// 	Available = "available",
+// 	NotAvailable = "not available",
+// }
+// interface IRequest {
+// 	animal: Animal;
+// 	breed: string;
+// 	sterilized?: string;
+// }
+
+// // Response #1
+
+// // {
+// //     status: 'available',
+// //     data: {
+// //         animal: 'cat' | 'dog' | 'bird',
+// //         breed: string,
+// //         sterilized?: string,
+// //         location: string,
+// //         age?: number
+// //     }
+// // }
+
+// interface IResponseData extends IRequest {
+// 	location: string;
+// 	age?: number;
+// }
+
+// // Response #2
+
+// // {
+// //     status: 'not available',
+// //     data: {
+// //         message: string,
+// //         nextUpdateIn: Date
+// //     }
+// // }
+
+// interface IResponseShortData {
+// 	message: string;
+// 	nextUpdateIn: Date;
+// }
+
+// interface IGoodResponse {
+// 	status: AnimalStatus.Available;
+// 	data: IResponseData;
+// }
+
+// interface IBadResponse {
+// 	status: AnimalStatus.NotAvailable;
+// 	data: IResponseShortData;
+// }
+
+// const availableResp: IGoodResponse = {
+// 	status: AnimalStatus.Available,
+// 	data: {
+// 		animal: "cat",
+// 		breed: "Scotish blue",
+// 		sterilized: "yes",
+// 		location: "Singapure",
+// 		age: 2,
+// 	},
+// };
+
+// const notAvailableResp: IBadResponse = {
+// 	status: AnimalStatus.NotAvailable,
+// 	data: {
+// 		message: "This animal not available",
+// 		nextUpdateIn: new Date(),
+// 	},
+// };
+
+// type Responses = IGoodResponse | IBadResponse;
+
+// function isAnimalAvailable(res: Responses): res is IGoodResponse {
+// 	return res.status === "available" ? true : false;
+// }
+
+// function checkAnimalData(animal: Responses) {
+// 	if (isAnimalAvailable(animal)) {
+// 		return animal.data;
+// 	} else {
+// 		return `${animal.data.message}, you can try in ${animal.data.nextUpdateIn}`;
+// 	}
+// }
+
+// const firstData = checkAnimalData(availableResp);
+// const secondData = checkAnimalData(notAvailableResp);
+
+// console.log(firstData);
+// console.log(secondData);
